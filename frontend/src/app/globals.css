@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #09090b;
+  --surface: #111113;
+  --surface-elevated: #18181b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --text: #fafafa;
+  --text-muted: #71717a;
+  --text-subtle: #52525b;
+  --accent: #818cf8;
+  --accent-dim: rgba(129, 140, 248, 0.12);
+  --success: #34d399;
+  --warning: #fbbf24;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .glass {
+    @apply bg-[var(--surface)] border border-[var(--border)] backdrop-blur-xl;
+  }
+
+  .glass-elevated {
+    @apply bg-[var(--surface-elevated)] border border-[var(--border)] shadow-2xl shadow-black/40;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent;
+  }
+
+  .mesh-bg {
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% -20%, rgba(129, 140, 248, 0.15), transparent),
+      radial-gradient(ellipse 50% 40% at 100% 0%, rgba(99, 102, 241, 0.08), transparent);
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-sm
+      text-[var(--text)] placeholder:text-[var(--text-subtle)]
+      focus:outline-none focus:border-[var(--border-hover)] focus:ring-1 focus:ring-indigo-500/30
+      transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5
+      text-sm font-medium text-zinc-900 transition-all duration-200
+      hover:bg-zinc-100 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)]
+      px-5 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200
+      hover:border-[var(--border-hover)] hover:bg-white/[0.03] active:scale-[0.98];
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-zinc-400
+      transition-colors duration-150 hover:bg-white/[0.04] hover:text-zinc-100;
+  }
+
+  .nav-link-active {
+    @apply bg-white/[0.06] text-white;
+  }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.35s ease-out forwards;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
